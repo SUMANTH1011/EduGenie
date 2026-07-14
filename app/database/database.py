@@ -5,11 +5,11 @@ from app.config import DATABASE_URL
 
 engine = create_engine(
     DATABASE_URL,
-    echo=True
+    pool_pre_ping=True
 )
 
 SessionLocal = sessionmaker(
-    bind=engine,
+    autocommit=False,
     autoflush=False,
-    autocommit=False
+    bind=engine
 )
