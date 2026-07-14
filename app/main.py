@@ -6,12 +6,18 @@ from app.api.routes import router
 from app.api.pages import router as pages_router
 from app.api.quiz_result import router as quiz_result_router
 from app.api.analytics import router as analytics_router
+from app.database.base import Base
+from app.database.database import engine
+
+# Import models so SQLAlchemy knows about them
+from app.database.models import *
 from app.core.exceptions import exception_handler
 app = FastAPI(
     title="EduGenie Learning Assistant",
     version="1.0.0"
 )
 
+Base.metadata.create_all(bind=engine)
 app.mount(
     "/static",
     StaticFiles(directory="app/static"),

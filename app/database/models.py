@@ -166,7 +166,10 @@ class QuizAttempt(Base):
 
     user_id = Column(Integer, ForeignKey("users.user_id"))
 
-    query_id = Column(Integer, ForeignKey("queries.query_id"))
+    query_id = Column(
+    Integer,
+    ForeignKey("user_queries.query_id")
+)
 
     score = Column(Integer)
 
